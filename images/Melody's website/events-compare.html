@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events Calendar — List vs Month (comparison)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #6B7D5E;
+    --peach: #D97B54;
+    --peach-light: #EDA882;
+    --cream: #FAF7F1;
+    --cream-warm: #F4EFE6;
+    --dark: #272420;
+    --text: #3A3630;
+    --text-muted: #7A7268;
+    --white: #FFFFFF;
+    --forest: #3F6E5E;
+    --forest-light: #6E9A8A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Raleway', sans-serif; color: var(--text); background: var(--cream-warm); -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1440px; margin: 0 auto; padding: 3.5rem 2.5rem 5rem; }
+
+  .head { text-align: center; max-width: 680px; margin: 0 auto 3rem; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 0.7rem; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--peach); margin-bottom: 1rem; }
+  .eyebrow::before, .eyebrow::after { content: ''; width: 26px; height: 1.5px; background: var(--peach); opacity: 0.6; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 400; line-height: 1.1; color: var(--dark); margin-bottom: 0.9rem; }
+  h1 em { font-style: italic; color: var(--forest); }
+  .head p { font-size: 0.95rem; line-height: 1.8; color: var(--text-muted); }
+
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; align-items: start; }
+  .panel { background: var(--cream); border: 1px solid rgba(63,110,94,0.16); border-radius: 22px; overflow: hidden; box-shadow: 0 16px 54px rgba(58,54,48,0.12); display: flex; flex-direction: column; }
+  .panel-head { padding: 1.6rem 1.8rem 1.4rem; border-bottom: 1px solid rgba(63,110,94,0.12); }
+  .panel-tag { display: inline-block; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--white); background: var(--forest); padding: 0.3rem 0.8rem; border-radius: 2rem; margin-bottom: 0.9rem; }
+  .panel-tag.alt { background: var(--peach); }
+  .panel-title { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 500; color: var(--dark); line-height: 1.1; margin-bottom: 0.5rem; }
+  .panel-desc { font-size: 0.82rem; line-height: 1.6; color: var(--text-muted); }
+  .pros { list-style: none; margin: 1rem 0 0; display: flex; flex-direction: column; gap: 0.4rem; }
+  .pros li { font-size: 0.78rem; line-height: 1.5; color: var(--text); padding-left: 1.3rem; position: relative; }
+  .pros li::before { content: '✓'; position: absolute; left: 0; color: var(--forest-light); font-weight: 700; }
+  .pros li.con::before { content: '–'; color: var(--peach); }
+  .frame { background: var(--white); }
+  .frame iframe { display: block; width: 100%; border: 0; }
+  .frame.list iframe { height: 620px; }
+  .frame.month iframe { height: 620px; }
+  .panel-foot { padding: 1.1rem 1.8rem 1.5rem; display: flex; justify-content: center; }
+  .view-full { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); background: var(--peach); padding: 0.7rem 1.6rem; border-radius: 3rem; transition: background 0.3s, transform 0.3s; }
+  .view-full:hover { background: var(--peach-light); transform: translateY(-2px); }
+
+  .note { text-align: center; margin-top: 2.6rem; font-size: 0.82rem; line-height: 1.7; color: var(--text-muted); max-width: 680px; margin-left: auto; margin-right: auto; }
+  .note strong { color: var(--forest); font-weight: 700; }
+
+  @media (max-width: 900px) {
+    .compare { grid-template-columns: 1fr; gap: 2.4rem; }
+    .wrap { padding: 2.5rem 1.3rem 4rem; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="head">
+      <p class="eyebrow">Pick a calendar style</p>
+      <h1>List view <em>or</em> month view?</h1>
+      <p>Both pull from the same live Google Calendar — only the display differs. Compare them below, then tell me which to keep as the main Events page.</p>
+    </header>
+
+    <div class="compare">
+
+      <!-- LIST / AGENDA -->
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-tag">Option A · List</span>
+          <h2 class="panel-title">Agenda / list view</h2>
+          <p class="panel-desc">Events shown as a chronological list — the next gathering is always right at the top.</p>
+          <ul class="pros">
+            <li>Easiest to scan on a phone</li>
+            <li>Upcoming event reads first, no hunting</li>
+            <li>Great when there are a handful of dates</li>
+            <li class="con">Less sense of "which week/weekend"</li>
+          </ul>
+        </div>
+        <div class="frame list">
+          <iframe title="List view" loading="lazy"
+            src="https://calendar.google.com/calendar/embed?src=awolmonks%40gmail.com&ctz=Australia%2FMelbourne&mode=AGENDA&showTitle=0&showPrint=0&showCalendars=0&showTz=0&showNav=1&showDate=1&showTabs=0&bgcolor=%23FFFFFF&color=%233F6E5E"></iframe>
+        </div>
+        <div class="panel-foot">
+          <a class="view-full" href="events.html" target="_blank" rel="noopener">Open full page →</a>
+        </div>
+      </div>
+
+      <!-- MONTH -->
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-tag alt">Option B · Month</span>
+          <h2 class="panel-title">Monthly calendar view</h2>
+          <p class="panel-desc">A familiar month grid — see the whole month at a glance and how dates fall across weekends.</p>
+          <ul class="pros">
+            <li>At-a-glance feel for the whole month</li>
+            <li>Shows weekday vs weekend patterns</li>
+            <li>Familiar, "real calendar" look</li>
+            <li class="con">Tighter on small phone screens</li>
+          </ul>
+        </div>
+        <div class="frame month">
+          <iframe title="Month view" loading="lazy"
+            src="https://calendar.google.com/calendar/embed?src=awolmonks%40gmail.com&ctz=Australia%2FMelbourne&mode=MONTH&showTitle=0&showPrint=0&showCalendars=0&showTz=0&showNav=1&showDate=1&showTabs=0&bgcolor=%23FFFFFF&color=%233F6E5E"></iframe>
+        </div>
+        <div class="panel-foot">
+          <a class="view-full" href="events-month.html" target="_blank" rel="noopener">Open full page →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="note">
+      My recommendation: <strong>List view</strong> while there are only a few events on the calendar (it always surfaces the next one and is friendliest on mobile), switching to <strong>Month view</strong> if the schedule fills out. But it's your call — both are ready to go.
+    </p>
+  </div>
+</body>
+</html>

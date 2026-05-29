@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Melody Moon — Hero Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:         #6B7D5E;
+    --sage-mid:     #8A9E7B;
+    --sage-light:   #A8BF9A;
+    --sage-pale:    #E6EDE1;
+    --peach:        #D97B54;
+    --peach-light:  #EDA882;
+    --peach-pale:   #FAEEE6;
+    --cream:        #FAF7F1;
+    --cream-warm:   #F4EFE6;
+    --gold:         #BF9B5A;
+    --dark:         #272420;
+    --text:         #3A3630;
+    --text-muted:   #7A7268;
+    --white:        #FFFFFF;
+  }
+  body { margin: 0; font-family: 'Raleway', sans-serif; background: #ece8df; }
+
+  /* ─── Shared hero primitives ─── */
+  .hero-art {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+    color: var(--text);
+    display: flex;
+    font-family: 'Raleway', sans-serif;
+  }
+  .nav-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    z-index: 10;
+  }
+  .nav-bar .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .nav-bar .brand small {
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-top: 3px;
+    opacity: 0.7;
+  }
+  .nav-bar .links {
+    display: flex;
+    gap: 1.8rem;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .nav-bar .links a { padding-bottom: 2px; }
+  .nav-bar .cta-btn {
+    background: var(--peach);
+    color: var(--white);
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    letter-spacing: 0.14em;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before,
+  .eyebrow.both::after {
+    content: '';
+    width: 28px; height: 1px;
+    background: currentColor;
+    opacity: 0.55;
+  }
+  .h-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin: 1.2rem 0 1.4rem;
+  }
+  .h-title em {
+    display: block;
+    font-style: italic;
+  }
+  .h-tagline {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+  .btn-row {
+    display: flex;
+    gap: 0.9rem;
+    margin-top: 2.4rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.9rem;
+    border-radius: 3rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border: 1.5px solid transparent;
+  }
+  .btn.primary { background: var(--peach); color: var(--white); box-shadow: 0 6px 24px rgba(217,123,84,0.35); }
+  .btn.ghost-dark { border-color: rgba(58,54,48,0.35); color: var(--text); }
+  .btn.ghost-light { border-color: rgba(255,255,255,0.6); color: var(--white); }
+
+  /* ════════════════════════════════════
+     OPTION A — Editorial Split (image right)
+  ════════════════════════════════════ */
+  .a-wrap { background: var(--cream); }
+  .a-left {
+    flex: 0 0 46%;
+    padding: 7rem 4.5rem 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .a-eyebrow { color: var(--peach); margin-bottom: 0.5rem; }
+  .a-title {
+    font-size: 6.4rem;
+    color: var(--dark);
+  }
+  .a-title em { color: var(--peach); }
+  .a-tagline {
+    color: var(--text-muted);
+    max-width: 28rem;
+  }
+  .a-right {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .a-right img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 62% center;
+    display: block;
+  }
+  .a-right::before {
+    /* hairline seam only — don't fade across Melody */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to left, transparent 96%, rgba(250,247,241,0.5) 100%);
+    pointer-events: none;
+  }
+  .a-meta {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 5rem;
+    right: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .a-meta .rule { flex: 1; height: 1px; background: var(--text-muted); opacity: 0.3; margin: 0 1rem; }
+
+  /* ════════════════════════════════════
+     OPTION B — Magazine Frame (portrait card)
+  ════════════════════════════════════ */
+  .b-wrap {
+    background:
+      radial-gradient(circle at 20% 30%, rgba(168,191,154,0.18), transparent 55%),
+      var(--cream-warm);
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  .b-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4.5rem;
+    align-items: center;
+    padding: 5rem 5.5rem;
+    width: 100%;
+  }
+  .b-text { position: relative; }
+  .b-eyebrow { color: var(--sage); margin-bottom: 1rem; }
+  .b-title {
+    font-size: 6.8rem;
+    color: var(--dark);
+  }
+  .b-title em {
+    color: var(--peach);
+    font-size: 5.8rem;
+    margin-top: 0.2rem;
+  }
+  .b-divider {
+    width: 48px; height: 2px;
+    background: linear-gradient(to right, var(--peach), transparent);
+    margin: 1.6rem 0;
+  }
+  .b-tagline {
+    color: var(--text);
+    max-width: 26rem;
+  }
+  .b-img-wrap {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(58,54,48,0.22);
+  }
+  .b-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .b-img-wrap::after {
+    /* refined corner frame mark */
+    content: '';
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 26px; height: 26px;
+    border-top: 1px solid rgba(255,255,255,0.7);
+    border-right: 1px solid rgba(255,255,255,0.7);
+  }
+  .b-stamp {
+    position: absolute;
+    bottom: -28px;
+    left: -28px;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: var(--sage);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.15;
+    text-align: center;
+    border: 5px solid var(--cream-warm);
+    box-shadow: 0 12px 36px rgba(107,125,94,0.35);
+  }
+  .b-stamp span:first-child { font-size: 1.55rem; }
+
+  /* ════════════════════════════════════
+     OPTION C — Full-bleed photo + clean cream band
+  ════════════════════════════════════ */
+  .c-wrap {
+    flex-direction: column;
+    background: var(--cream);
+  }
+  .c-top {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .c-top img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+  .c-top::after {
+    /* tiny atmospheric warmth — does NOT touch text since text lives below */
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(39,36,32,0.25) 0%, transparent 30%, transparent 70%, rgba(244,239,230,0.4) 100%);
+  }
+  .c-top .nav-bar { color: var(--white); }
+  .c-top .nav-bar .links a { color: rgba(255,255,255,0.85); }
+  .c-top .floating-quote {
+    position: absolute;
+    bottom: 2.2rem;
+    left: 2.5rem;
+    color: rgba(255,255,255,0.9);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    max-width: 22rem;
+    line-height: 1.5;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+  .c-top .ribbon {
+    position: absolute;
+    top: 50%;
+    right: 2.5rem;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: right center;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+  .c-bottom {
+    flex: 0 0 260px;
+    background: var(--cream);
+    padding: 0 5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 3rem;
+    border-top: 1px solid rgba(58,54,48,0.08);
+  }
+  .c-text { }
+  .c-eyebrow { color: var(--peach); margin-bottom: 0.7rem; }
+  .c-title {
+    font-size: 3.6rem;
+    margin: 0;
+    color: var(--dark);
+    line-height: 1;
+  }
+  .c-title em { display: inline; color: var(--peach); font-style: italic; }
+  .c-tagline {
+    color: var(--text-muted);
+    margin-top: 0.9rem;
+    max-width: 30rem;
+    font-size: 0.95rem;
+  }
+  .c-cta-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: stretch;
+  }
+
+  /* ════════════════════════════════════
+     OPTION D — Asymmetric overlay (text anchored to dark side)
+  ════════════════════════════════════ */
+  .d-wrap {
+    background: #1a1815;
+    position: relative;
+  }
+  .d-img {
+    position: absolute;
+    inset: 0;
+    background: url('images/hero.jpg') center / cover no-repeat;
+  }
+  .d-img::after {
+    /* directional gradient: dark on left where text lives, clear over the subject */
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(95deg,
+        rgba(20,18,15,0.85) 0%,
+        rgba(20,18,15,0.65) 20%,
+        rgba(20,18,15,0.15) 42%,
+        rgba(20,18,15,0) 58%),
+      linear-gradient(to top, rgba(20,18,15,0.5) 0%, transparent 35%);
+  }
+  .d-content {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+    padding: 0 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 620px;
+  }
+  .d-eyebrow { color: var(--peach-light); margin-bottom: 0.4rem; }
+  .d-title {
+    font-size: 6rem;
+    color: var(--white);
+  }
+  .d-title em { color: var(--peach-light); }
+  .d-tagline { color: rgba(255,255,255,0.85); max-width: 24rem; }
+  .d-nav .brand,
+  .d-nav .links a { color: var(--white); }
+  .d-meta {
+    position: absolute;
+    bottom: 2.2rem;
+    left: 5rem;
+    right: 5rem;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+  .d-scroll {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .d-scroll::after {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--peach-light);
+  }
+
+  /* ════════════════════════════════════
+     MOBILE VARIANTS (390 wide)
+  ════════════════════════════════════ */
+  .m-frame {
+    width: 100%; height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #1a1815;
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+  }
+  .m-nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.2rem;
+    z-index: 10;
+  }
+  .m-nav .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    line-height: 1;
+  }
+  .m-nav .brand small {
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.48rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-top: 2px;
+    opacity: 0.7;
+  }
+  .m-nav .menu {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .m-nav .menu span {
+    width: 22px; height: 1.2px; background: var(--white); display: block;
+  }
+
+  .m-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .m-eyebrow::before {
+    content: ''; width: 22px; height: 1px; background: currentColor; opacity: 0.6;
+  }
+  .m-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 4.4rem;
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    margin: 0.9rem 0 1rem;
+  }
+  .m-title em { display: block; font-style: italic; }
+  .m-tagline { font-size: 0.85rem; line-height: 1.6; font-weight: 300; }
+  .m-btn-row { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.4rem; }
+  .m-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.4rem;
+    border-radius: 3rem;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border: 1.5px solid transparent;
+    text-align: center;
+  }
+  .m-btn.primary { background: var(--peach); color: var(--white); }
+  .m-btn.ghost-light { border-color: rgba(255,255,255,0.55); color: var(--white); }
+  .m-btn.ghost-dark { border-color: rgba(58,54,48,0.35); color: var(--text); }
+
+  /* ── M1: D as-is on mobile (the problem) ── */
+  .m1 .m-img {
+    position: absolute; inset: 0;
+    background: url('images/hero.jpg') center / cover no-repeat;
+  }
+  .m1 .m-img::after {
+    /* same directional left-gradient as desktop D — covers the subject on mobile */
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(95deg,
+      rgba(20,18,15,0.85) 0%,
+      rgba(20,18,15,0.65) 30%,
+      rgba(20,18,15,0.2) 55%,
+      rgba(20,18,15,0) 75%);
+  }
+  .m1 .m-content {
+    position: absolute;
+    inset: 0;
+    padding: 5.5rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+    max-width: 80%;
+  }
+  .m1 .m-eyebrow { color: var(--peach-light); }
+  .m1 .m-title em { color: var(--peach-light); }
+  .m1 .problem-flag {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    z-index: 20;
+    background: #c0392b;
+    color: #fff;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.7rem;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  /* ── M2: Gradient flips to vertical on mobile (subject preserved) ── */
+  .m2 .m-img {
+    position: absolute; inset: 0;
+    background: url('images/hero.jpg') 35% center / cover no-repeat;
+  }
+  .m2 .m-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top,
+      rgba(20,18,15,0.78) 0%,
+      rgba(20,18,15,0.55) 30%,
+      rgba(20,18,15,0.12) 52%,
+      rgba(20,18,15,0) 68%);
+  }
+  .m2 .m-content {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 1.8rem 1.5rem 2rem;
+    z-index: 2;
+  }
+  .m2 .m-title { font-size: 4rem; }
+  .m2 .m-eyebrow { color: var(--peach-light); }
+  .m2 .m-title em { color: var(--peach-light); }
+  .m2 .ok-flag {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    z-index: 20;
+    background: var(--sage);
+    color: #fff;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.7rem;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  /* ── M3: Photo on top, clean cream band below (Option C style on mobile) ── */
+  .m3 { background: var(--cream); color: var(--text); display: flex; flex-direction: column; }
+  .m3 .m-img-block {
+    position: relative;
+    flex: 1.1;
+    overflow: hidden;
+  }
+  .m3 .m-img-block img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+  .m3 .m-img-block::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 25%, transparent 75%, rgba(244,239,230,0.5) 100%);
+  }
+  .m3 .m-nav .brand { color: var(--white); }
+  .m3 .m-nav .menu span { background: var(--white); }
+  .m3 .m-text-block {
+    flex: 0 0 auto;
+    padding: 1.8rem 1.5rem 2.2rem;
+    text-align: left;
+  }
+  .m3 .m-eyebrow { color: var(--peach); }
+  .m3 .m-title { color: var(--dark); font-size: 3.6rem; }
+  .m3 .m-title em { color: var(--peach); display: inline; }
+  .m3 .m-tagline { color: var(--text-muted); font-size: 0.82rem; }
+  .m3 .ok-flag {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    z-index: 20;
+    background: var(--sage);
+    color: #fff;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.7rem;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  /* ── M4: Option B on mobile — contained portrait card ── */
+  .m4 {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(168,191,154,0.22), transparent 55%),
+      var(--cream-warm);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    padding-top: 56px;
+  }
+  .m4 .m-nav .brand { color: var(--dark); }
+  .m4 .m-nav .menu span { background: var(--dark); }
+  .m4 .m4-inner {
+    padding: 1.4rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    flex: 1;
+  }
+  .m4 .m4-card {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 22px 50px rgba(58,54,48,0.22);
+    margin: 0 auto;
+    width: 78%;
+  }
+  .m4 .m4-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: 35% center;
+  }
+  .m4 .m4-card::after {
+    content: '';
+    position: absolute;
+    top: 12px; right: 12px;
+    width: 22px; height: 22px;
+    border-top: 1px solid rgba(255,255,255,0.7);
+    border-right: 1px solid rgba(255,255,255,0.7);
+  }
+  .m4 .m4-stamp {
+    position: absolute;
+    bottom: -22px;
+    left: -22px;
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    background: var(--sage);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.72rem;
+    line-height: 1.15;
+    text-align: center;
+    border: 4px solid var(--cream-warm);
+    box-shadow: 0 8px 22px rgba(107,125,94,0.35);
+  }
+  .m4 .m4-stamp span:first-child { font-size: 1.1rem; }
+  .m4 .m4-text { padding: 0 0.3rem; }
+  .m4 .m-eyebrow { color: var(--sage); }
+  .m4 .m4-divider {
+    width: 40px; height: 2px;
+    background: linear-gradient(to right, var(--peach), transparent);
+    margin: 1rem 0 1.1rem;
+  }
+  .m4 .m-title { color: var(--dark); font-size: 3.8rem; margin-top: 0.7rem; }
+  .m4 .m-title em { color: var(--peach); display: block; font-size: 3.2rem; }
+  .m4 .m-tagline { color: var(--text); font-size: 0.85rem; }
+  .m4 .alt-flag {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    z-index: 20;
+    background: var(--peach);
+    color: #fff;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.7rem;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  /* ── M5: Option A on mobile — same stacking as C, peach accent ── */
+  .m5 {
+    background: var(--cream);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+  }
+  .m5 .m-img-block {
+    position: relative;
+    flex: 1.05;
+    overflow: hidden;
+  }
+  .m5 .m-img-block img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 35% center;
+  }
+  .m5 .m-nav .brand { color: var(--white); }
+  .m5 .m-nav .menu span { background: var(--white); }
+  .m5 .m-text-block {
+    flex: 0 0 auto;
+    padding: 1.8rem 1.5rem 2.2rem;
+  }
+  .m5 .m-eyebrow { color: var(--peach); }
+  .m5 .m-title { color: var(--dark); font-size: 4rem; }
+  .m5 .m-title em { color: var(--peach); display: block; }
+  .m5 .m-tagline { color: var(--text-muted); font-size: 0.85rem; }
+  .m5 .a-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1.4rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .m5 .a-meta-row .rule { flex: 1; height: 1px; background: var(--text-muted); opacity: 0.3; }
+  .m5 .alt-flag {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    z-index: 20;
+    background: var(--peach);
+    color: #fff;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.7rem;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- The four heroes are plain HTML below so the canvas can render them as raw markup inside <DCArtboard> via dangerouslySetInnerHTML -->
+<template id="hero-a">
+  <div class="hero-art a-wrap">
+    <nav class="nav-bar">
+      <a class="brand">Melody Moon<small>Music with Nature</small></a>
+      <div class="links">
+        <a>Offerings</a>
+        <a>My Story</a>
+        <a>Stories</a>
+        <a class="cta-btn">Get in Touch</a>
+      </div>
+    </nav>
+    <div class="a-left">
+      <p class="eyebrow a-eyebrow both">Surf Coast · Victoria</p>
+      <h1 class="h-title a-title">Melody<em>Moon</em></h1>
+      <p class="h-tagline a-tagline">Empowering girls &amp; women to discover, express and share their unique voice — through song, songwriting and the wisdom of nature.</p>
+      <div class="btn-row">
+        <a class="btn primary">Explore Offerings ↓</a>
+        <a class="btn ghost-dark">Call Now</a>
+      </div>
+      <div class="a-meta">
+        <span>Est. 2009</span>
+        <span class="rule"></span>
+        <span>Singer · Songwriter · Mentor</span>
+      </div>
+    </div>
+    <div class="a-right">
+      <img src="images/hero.jpg" alt="Melody Moon">
+    </div>
+  </div>
+</template>
+
+<template id="hero-b">
+  <div class="hero-art b-wrap">
+    <nav class="nav-bar">
+      <a class="brand">Melody Moon<small>Music with Nature</small></a>
+      <div class="links">
+        <a>Offerings</a>
+        <a>My Story</a>
+        <a>Stories</a>
+        <a class="cta-btn">Get in Touch</a>
+      </div>
+    </nav>
+    <div class="b-inner">
+      <div class="b-text">
+        <p class="eyebrow b-eyebrow">Surf Coast · Victoria</p>
+        <h1 class="h-title b-title">Melody<em>Moon</em></h1>
+        <div class="b-divider"></div>
+        <p class="h-tagline b-tagline">Empowering girls &amp; women to discover, express and share their unique voice.</p>
+        <div class="btn-row">
+          <a class="btn primary">Explore Offerings ↓</a>
+          <a class="btn ghost-dark">Call Now</a>
+        </div>
+      </div>
+      <div class="b-img-wrap">
+        <img src="images/hero.jpg" alt="Melody Moon">
+        <div class="b-stamp">
+          <span>♪</span>
+          <span>est<br>2009</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="hero-c">
+  <div class="hero-art c-wrap">
+    <div class="c-top">
+      <img src="images/hero.jpg" alt="Melody Moon">
+      <nav class="nav-bar">
+        <a class="brand" style="color:#fff">Melody Moon<small>Music with Nature</small></a>
+        <div class="links">
+          <a>Offerings</a>
+          <a>My Story</a>
+          <a>Stories</a>
+          <a class="cta-btn">Get in Touch</a>
+        </div>
+      </nav>
+      <p class="floating-quote">"You sharing your voice helps me remember the magic inside me."</p>
+      <span class="ribbon">Surf Coast · Victoria · Australia</span>
+    </div>
+    <div class="c-bottom">
+      <div class="c-text">
+        <p class="eyebrow c-eyebrow">Singer · Songwriter · Mentor</p>
+        <h1 class="h-title c-title">Melody <em>Moon</em></h1>
+        <p class="c-tagline">Empowering girls &amp; women to discover, express and share their unique voice.</p>
+      </div>
+      <div class="c-cta-stack">
+        <a class="btn primary">Explore Offerings ↓</a>
+        <a class="btn ghost-dark">📞 Call Now</a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="hero-d">
+  <div class="hero-art d-wrap">
+    <div class="d-img"></div>
+    <nav class="nav-bar d-nav">
+      <a class="brand">Melody Moon<small>Music with Nature</small></a>
+      <div class="links">
+        <a>Offerings</a>
+        <a>My Story</a>
+        <a>Stories</a>
+        <a class="cta-btn">Get in Touch</a>
+      </div>
+    </nav>
+    <div class="d-content">
+      <p class="eyebrow d-eyebrow both">Surf Coast · Victoria</p>
+      <h1 class="h-title d-title">Melody<em>Moon</em></h1>
+      <p class="h-tagline d-tagline">Empowering girls &amp; women to discover, express and share their unique voice.</p>
+      <div class="btn-row">
+        <a class="btn primary">Explore Offerings ↓</a>
+        <a class="btn ghost-light">Call Now</a>
+      </div>
+    </div>
+    <div class="d-meta">
+      <span>♪ Music with Nature</span>
+      <span class="d-scroll">Scroll</span>
+    </div>
+  </div>
+</template>
+
+<template id="hero-d-mobile-bad">
+  <div class="m-frame m1">
+    <span class="problem-flag">Problem</span>
+    <div class="m-img"></div>
+    <nav class="m-nav">
+      <a class="brand">Melody Moon<small>Music · Nature</small></a>
+      <div class="menu"><span></span><span></span><span></span></div>
+    </nav>
+    <div class="m-content">
+      <p class="m-eyebrow">Surf Coast · Vic</p>
+      <h1 class="m-title">Melody<em>Moon</em></h1>
+      <p class="m-tagline">Empowering girls &amp; women to discover their unique voice.</p>
+      <div class="m-btn-row">
+        <a class="m-btn primary">Explore Offerings ↓</a>
+        <a class="m-btn ghost-light">Call Now</a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="hero-d-mobile-fix">
+  <div class="m-frame m2">
+    <span class="ok-flag">Fix</span>
+    <div class="m-img"></div>
+    <nav class="m-nav">
+      <a class="brand">Melody Moon<small>Music · Nature</small></a>
+      <div class="menu"><span></span><span></span><span></span></div>
+    </nav>
+    <div class="m-content">
+      <p class="m-eyebrow">Surf Coast · Vic</p>
+      <h1 class="m-title">Melody<em>Moon</em></h1>
+      <p class="m-tagline">Empowering girls &amp; women to discover their unique voice.</p>
+      <div class="m-btn-row">
+        <a class="m-btn primary">Explore Offerings ↓</a>
+        <a class="m-btn ghost-light">Call Now</a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="hero-c-mobile">
+  <div class="m-frame m3">
+    <span class="ok-flag">C · mobile</span>
+    <div class="m-img-block">
+      <img src="images/hero.jpg" alt="Melody Moon">
+      <nav class="m-nav">
+        <a class="brand">Melody Moon<small>Music · Nature</small></a>
+        <div class="menu"><span></span><span></span><span></span></div>
+      </nav>
+    </div>
+    <div class="m-text-block">
+      <p class="m-eyebrow">Singer · Songwriter</p>
+      <h1 class="m-title">Melody <em>Moon</em></h1>
+      <p class="m-tagline">Empowering girls &amp; women to discover, express and share their unique voice.</p>
+      <div class="m-btn-row">
+        <a class="m-btn primary">Explore Offerings ↓</a>
+        <a class="m-btn ghost-dark">📞 Call Now</a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="hero-a-mobile">
+  <div class="m-frame m5">
+    <span class="alt-flag">A · mobile</span>
+    <div class="m-img-block">
+      <img src="images/hero.jpg" alt="Melody Moon">
+      <nav class="m-nav">
+        <a class="brand">Melody Moon<small>Music · Nature</small></a>
+        <div class="menu"><span></span><span></span><span></span></div>
+      </nav>
+    </div>
+    <div class="m-text-block">
+      <p class="m-eyebrow">Surf Coast · Vic</p>
+      <h1 class="m-title">Melody<em>Moon</em></h1>
+      <p class="m-tagline">Empowering girls &amp; women to discover, express and share their unique voice — through song, songwriting and the wisdom of nature.</p>
+      <div class="m-btn-row">
+        <a class="m-btn primary">Explore Offerings ↓</a>
+        <a class="m-btn ghost-dark">📞 Call Now</a>
+      </div>
+      <div class="a-meta-row">
+        <span>Est. 2009</span>
+        <span class="rule"></span>
+        <span>Singer · Mentor</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="hero-b-mobile">
+  <div class="m-frame m4">
+    <span class="alt-flag">B · mobile</span>
+    <nav class="m-nav">
+      <a class="brand">Melody Moon<small>Music · Nature</small></a>
+      <div class="menu"><span></span><span></span><span></span></div>
+    </nav>
+    <div class="m4-inner">
+      <div class="m4-card">
+        <img src="images/hero.jpg" alt="Melody Moon">
+        <div class="m4-stamp">
+          <span>♪</span>
+          <span>est<br>2009</span>
+        </div>
+      </div>
+      <div class="m4-text">
+        <p class="m-eyebrow">Surf Coast · Vic</p>
+        <h1 class="m-title">Melody<em>Moon</em></h1>
+        <div class="m4-divider"></div>
+        <p class="m-tagline">Empowering girls &amp; women to discover, express and share their unique voice.</p>
+        <div class="m-btn-row">
+          <a class="m-btn primary">Explore Offerings ↓</a>
+          <a class="m-btn ghost-dark">📞 Call Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel">
+  const { DesignCanvas, DCSection, DCArtboard } = window;
+
+  function HeroTemplate({ id }) {
+    const ref = React.useRef(null);
+    React.useEffect(() => {
+      const tpl = document.getElementById(id);
+      if (tpl && ref.current) {
+        ref.current.innerHTML = '';
+        ref.current.appendChild(tpl.content.cloneNode(true));
+      }
+    }, [id]);
+    return <div ref={ref} style={{ width: '100%', height: '100%' }} />;
+  }
+
+  const HERO_W = 1440;
+  const HERO_H = 800;
+
+  function App() {
+    return (
+      <DesignCanvas>
+        <DCSection
+          id="heroes"
+          title="Hero — 4 directions"
+          subtitle="Each solves the photo-vs-text conflict differently. Pick the vibe you like and we'll wire it into the live site."
+        >
+          <DCArtboard id="a" label="A · Editorial split — image gets its own real estate, text on cream" width={HERO_W} height={HERO_H}>
+            <HeroTemplate id="hero-a" />
+          </DCArtboard>
+          <DCArtboard id="b" label="B · Magazine frame — portrait crop as a feature card" width={HERO_W} height={HERO_H}>
+            <HeroTemplate id="hero-b" />
+          </DCArtboard>
+          <DCArtboard id="c" label="C · Full-bleed photo + clean text band below" width={HERO_W} height={HERO_H}>
+            <HeroTemplate id="hero-c" />
+          </DCArtboard>
+          <DCArtboard id="d" label="D · Asymmetric overlay — dark gradient only on the text side" width={HERO_W} height={HERO_H}>
+            <HeroTemplate id="hero-d" />
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection
+          id="mobile"
+          title="On mobile — does the gradient cover her?"
+          subtitle="Yes, if applied naively. On a portrait viewport the subject fills the frame, so a left-side gradient smears her face. The fix is to flip the gradient direction (or use Option C's layout) at the mobile breakpoint."
+        >
+          <DCArtboard id="m1" label="D · as-is on mobile — left gradient covers Melody (broken)" width={390} height={780}>
+            <HeroTemplate id="hero-d-mobile-bad" />
+          </DCArtboard>
+          <DCArtboard id="m2" label="D · responsive fix — gradient flips vertical, text anchors bottom" width={390} height={780}>
+            <HeroTemplate id="hero-d-mobile-fix" />
+          </DCArtboard>
+          <DCArtboard id="m3" label="C · on mobile — photo top, clean text below (no overlay needed)" width={390} height={780}>
+            <HeroTemplate id="hero-c-mobile" />
+          </DCArtboard>
+          <DCArtboard id="m4" label="B · on mobile — contained portrait card, stamp, sage backdrop" width={390} height={860}>
+            <HeroTemplate id="hero-b-mobile" />
+          </DCArtboard>
+          <DCArtboard id="m5" label="A · on mobile — stacks like C, with A's peach accents & meta row" width={390} height={820}>
+            <HeroTemplate id="hero-a-mobile" />
+          </DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
