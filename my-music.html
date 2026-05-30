@@ -280,7 +280,7 @@
       background: var(--peach);
       padding: 0.8rem 2.4rem;
       border-radius: 3rem;
-      margin-top: 0.5rem;
+      margin-top: 1rem;
     }
 
     .mobile-nav-phone {
@@ -288,6 +288,7 @@
       letter-spacing: 0.18em;
       color: var(--text-muted);
       text-transform: uppercase;
+      margin-top: 1rem;
     }
 
     .nav-links>li {
@@ -554,6 +555,7 @@
       padding: 0.8rem 2.4rem !important;
       border-radius: 3rem !important;
       margin-top: 1rem !important;
+      margin-bottom: 1rem !important;
       display: inline-block;
     }
 
@@ -677,7 +679,7 @@
     .page-hero-bg {
       position: absolute;
       inset: 0;
-      background: url('images/nice-landscape-scaled.jpg') center / cover no-repeat;
+      background: url('images/nice-landscape-scaled.jpg') 64% 35% / cover no-repeat;
     }
 
     .hero-seam {
@@ -1805,6 +1807,10 @@
         min-height: 55vh;
       }
 
+      .page-hero-bg {
+        top: var(--nav-h);
+      }
+
       .hero-seam {
         display: none;
       }
@@ -1903,16 +1909,13 @@
   </nav>
 
   <div class="mobile-nav-overlay" id="mobileNavOverlay" role="dialog" aria-label="Navigation">
-    <a href="my-music.html" onclick="closeMobileNav()">My Music</a>
-
-    <span class="mobile-section-label"
-      style="font-size:0.62rem;font-family:'Raleway',sans-serif;font-style:normal;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-top:0.6rem;">Offerings</span>
+    <span class="mobile-section-label mobile-offerings-label">Offerings</span>
     <div class="mobile-offerings">
       <a href="lessons.html" onclick="closeMobileNav()">Singing &amp; Songwriting Lessons</a>
       <a href="ssc.html" onclick="closeMobileNav()">Secret Songwriters Club</a>
       <a href="women.html" onclick="closeMobileNav()">Women's Singing Circles</a>
     </div>
-
+    <a href="my-music.html" onclick="closeMobileNav()">My Music</a>
     <a href="index.html#about" onclick="closeMobileNav()">About</a>
     <a href="index.html#testimonials" onclick="closeMobileNav()">Kind Words</a>
     <a href="events.html" onclick="closeMobileNav()">Events</a>

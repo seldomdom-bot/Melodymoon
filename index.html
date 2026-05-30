@@ -286,7 +286,7 @@
       background: var(--peach);
       padding: 0.8rem 2.4rem;
       border-radius: 3rem;
-      margin-top: 0.5rem;
+      margin-top: 1rem;
     }
 
     .mobile-nav-phone {
@@ -294,6 +294,7 @@
       letter-spacing: 0.18em;
       color: var(--text-muted);
       text-transform: uppercase;
+      margin-top: 1rem;
     }
 
     .nav-links>li {
@@ -560,6 +561,7 @@
       padding: 0.8rem 2.4rem !important;
       border-radius: 3rem !important;
       margin-top: 1rem !important;
+      margin-bottom: 1rem !important;
       display: inline-block;
     }
 
@@ -1093,6 +1095,7 @@
       width: 100%;
       aspect-ratio: 3/4;
       object-fit: cover;
+      object-position: center 20%;
       border-radius: 24px;
       box-shadow: 0 20px 72px rgba(58, 54, 48, 0.15);
       display: block;
@@ -1834,14 +1837,14 @@
           </a>
 
           <div class="dropdown-footer">
-            <a href="#services">View all offerings →</a>
+            <a href="index.html#services">View all offerings →</a>
           </div>
         </div>
       </li>
 
       <li><a href="my-music.html">My Music</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#testimonials">Kind Words</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#testimonials">Kind Words</a></li>
       <li><a href="events.html">Events</a></li>
       <li><a href="contact.html" class="nav-cta-btn">Contact</a></li>
     </ul>
@@ -1851,20 +1854,16 @@
     </button>
   </nav>
 
-  <!-- Mobile navigation overlay -->
   <div class="mobile-nav-overlay" id="mobileNavOverlay" role="dialog" aria-label="Navigation">
-    <a href="my-music.html" onclick="closeMobileNav()">My Music</a>
-
-    <span class="mobile-section-label"
-      style="font-size:0.62rem;font-family:'Raleway',sans-serif;font-style:normal;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-top:0.6rem;">Offerings</span>
+    <span class="mobile-section-label mobile-offerings-label">Offerings</span>
     <div class="mobile-offerings">
       <a href="lessons.html" onclick="closeMobileNav()">Singing &amp; Songwriting Lessons</a>
       <a href="ssc.html" onclick="closeMobileNav()">Secret Songwriters Club</a>
       <a href="women.html" onclick="closeMobileNav()">Women's Singing Circles</a>
     </div>
-
-    <a href="#about" onclick="closeMobileNav()">About</a>
-    <a href="#testimonials" onclick="closeMobileNav()">Kind Words</a>
+    <a href="my-music.html" onclick="closeMobileNav()">My Music</a>
+    <a href="index.html#about" onclick="closeMobileNav()">About</a>
+    <a href="index.html#testimonials" onclick="closeMobileNav()">Kind Words</a>
     <a href="events.html" onclick="closeMobileNav()">Events</a>
     <a href="contact.html" class="mob-cta" onclick="closeMobileNav()">Contact</a>
     <span class="mobile-nav-phone">📞 0427 484 728</span>
